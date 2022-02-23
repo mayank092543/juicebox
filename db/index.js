@@ -308,6 +308,18 @@ async function createPost({
           throw error;
       }
   }
+
+  async function getAllTags() {
+    try {
+      const { rows } = await client.query(`
+      SELECT * FROM tags;
+    `);
+
+    return rows;
+  } catch (error) {
+    throw error;
+    }
+  }
   
 
   // and export them
@@ -325,5 +337,6 @@ async function createPost({
     createPostTag,
     addTagsToPost,
     getPostById,
-    getPostsByTagName
+    getPostsByTagName,
+    getAllTags
   }
