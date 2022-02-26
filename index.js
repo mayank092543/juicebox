@@ -17,10 +17,9 @@ server.listen (PORT, () => {
     console.log("The server is up on port", PORT)
 });
 
-server.use ((req, res, next) => {
-    console.log("<___Body Logger START ____>");
-    console.log(req.body);
-    console.log("<___Body Logger END___>");
-
-    next();
-})
+server.use((error, request, response, next) => {
+    response.send({
+        name: error.name,
+        message: error.message
+    });
+});
